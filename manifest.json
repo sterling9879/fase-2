@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Sora Prompt Automation",
+  "version": "3.0.0",
+  "description": "Automacao de envio de prompts para Sora - maximo 3 geracoes simultaneas",
+  "permissions": [
+    "storage",
+    "webRequest",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://sora.chatgpt.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://sora.chatgpt.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
