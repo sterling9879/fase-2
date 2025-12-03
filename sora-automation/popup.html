@@ -187,9 +187,15 @@
       </div>
 
       <div class="section">
-        <label for="scenes-input">Suas Cenas (uma por linha):</label>
-        <textarea 
-          id="scenes-input" 
+        <div class="scenes-header">
+          <label for="scenes-input">Suas Cenas (uma por linha):</label>
+          <button id="open-library-btn" class="btn-library">
+            <span class="library-icon">📚</span>
+            Biblioteca de Prompts
+          </button>
+        </div>
+        <textarea
+          id="scenes-input"
           placeholder="Homer vai até a casa&#10;Homer entra em casa&#10;Homer abre a geladeira&#10;Homer pega uma cerveja&#10;..."
           rows="10"
         ></textarea>
@@ -427,6 +433,80 @@
       <div class="modal-footer">
         <button id="back-preview-btn" class="btn-secondary">Voltar</button>
         <button id="confirm-preview-btn" class="btn-primary">✅ Confirmar e Iniciar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Biblioteca de Prompts -->
+  <div id="library-modal" class="modal library-modal">
+    <div class="modal-content library-content">
+      <div class="modal-header library-header">
+        <h2>📚 Biblioteca de Prompts</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+
+      <div class="modal-body library-body">
+        <div class="library-search-bar">
+          <input type="text" id="library-search" placeholder="🔍 Buscar templates...">
+          <select id="library-category-filter">
+            <option value="">Todas categorias</option>
+            <option value="UGC">🎬 UGC</option>
+            <option value="Cinematic">🎥 Cinematográfico</option>
+            <option value="Produto">📦 Produto</option>
+            <option value="Lifestyle">🌟 Lifestyle</option>
+            <option value="Tutorial">📱 Tutorial</option>
+            <option value="Meme">😂 Meme/Viral</option>
+          </select>
+        </div>
+
+        <div id="library-grid" class="library-grid">
+          <!-- Cards serão renderizados aqui pelo JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Configuração de Prompts -->
+  <div id="prompt-config-modal" class="modal config-modal">
+    <div class="modal-content config-content">
+      <div class="modal-header config-header">
+        <div class="config-header-info">
+          <span id="config-template-icon" class="config-icon">🎬</span>
+          <div>
+            <h2 id="config-template-title">Template Selecionado</h2>
+            <p id="config-template-desc" class="config-description">Descrição do template</p>
+          </div>
+        </div>
+        <button class="modal-close">&times;</button>
+      </div>
+
+      <div class="modal-body config-body">
+        <div class="config-quantity-section">
+          <label for="prompt-quantity">Quantos prompts na sequência?</label>
+          <div class="quantity-selector">
+            <button class="qty-btn qty-minus" id="qty-minus">−</button>
+            <input type="number" id="prompt-quantity" value="3" min="1" max="10">
+            <button class="qty-btn qty-plus" id="qty-plus">+</button>
+          </div>
+        </div>
+
+        <div class="config-divider"></div>
+
+        <div id="dynamic-fields-container" class="dynamic-fields">
+          <!-- Campos dinâmicos serão renderizados aqui -->
+        </div>
+
+        <div class="prompt-preview-section">
+          <h4>Preview dos Prompts Gerados</h4>
+          <div id="prompts-preview-list" class="prompts-preview-list">
+            <!-- Preview será renderizado aqui -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer config-footer">
+        <button id="back-to-library-btn" class="btn-secondary">← Voltar</button>
+        <button id="generate-sequence-btn" class="btn-primary">🚀 Gerar Sequência</button>
       </div>
     </div>
   </div>
