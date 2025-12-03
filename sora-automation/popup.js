@@ -2,6 +2,243 @@
 // POPUP.JS - Interface Principal
 // ========================================
 
+// ========================================
+// BIBLIOTECA DE PROMPTS - DADOS
+// ========================================
+
+const bibliotecaPrompts = [
+  {
+    id: "ugc_realista",
+    titulo: "UGC Realista",
+    descricao: "Avatar falando de forma natural e realista para camera",
+    icone: "🎬",
+    categoria: "UGC",
+    placeholder: "Ex: Oi gente, tudo bem?",
+    promptBase: "Video ugc realista, pessoa falando para camera, iluminacao natural, qualidade 4k, expressao natural, fundo clean"
+  },
+  {
+    id: "ugc_entusiasmado",
+    titulo: "UGC Entusiasmado",
+    descricao: "Pessoa animada apresentando algo com energia",
+    icone: "🤩",
+    categoria: "UGC",
+    placeholder: "Ex: Voces nao vao acreditar nisso!",
+    promptBase: "Video ugc energetico, pessoa muito animada falando para camera, gesticulando, expressao empolgada, iluminacao vibrante, 4k"
+  },
+  {
+    id: "ugc_review",
+    titulo: "UGC Review",
+    descricao: "Review autentico de produto ou servico",
+    icone: "⭐",
+    categoria: "UGC",
+    placeholder: "Ex: Esse produto mudou minha vida",
+    promptBase: "Video review autentico, pessoa mostrando produto, expressao sincera, iluminacao natural, ambiente domestico, qualidade 4k"
+  },
+  {
+    id: "cinematic_epic",
+    titulo: "Cinematografico Epico",
+    descricao: "Cenas cinematograficas com visual dramatico",
+    icone: "🎥",
+    categoria: "Cinematic",
+    placeholder: "Ex: Heroi caminhando em direcao ao por do sol",
+    promptBase: "Cinematic epic scene, dramatic lighting, movie quality, wide angle, lens flare, depth of field, 4k cinematic"
+  },
+  {
+    id: "cinematic_slow",
+    titulo: "Slow Motion Dramatico",
+    descricao: "Cenas em camera lenta com impacto visual",
+    icone: "🎞️",
+    categoria: "Cinematic",
+    placeholder: "Ex: Gota de agua caindo em uma flor",
+    promptBase: "Slow motion cinematic, dramatic lighting, high speed camera effect, detailed textures, professional cinematography, 4k"
+  },
+  {
+    id: "cinematic_noir",
+    titulo: "Film Noir",
+    descricao: "Estilo classico de cinema noir",
+    icone: "🖤",
+    categoria: "Cinematic",
+    placeholder: "Ex: Detetive acendendo um cigarro na chuva",
+    promptBase: "Film noir style, black and white, dramatic shadows, venetian blinds lighting, 1940s aesthetic, cinematic composition"
+  },
+  {
+    id: "produto_showcase",
+    titulo: "Showcase de Produto",
+    descricao: "Apresentacao elegante de produtos",
+    icone: "📦",
+    categoria: "Produto",
+    placeholder: "Ex: Perfume de luxo dourado",
+    promptBase: "Product showcase, clean background, professional studio lighting, rotating view, premium feel, 4k quality"
+  },
+  {
+    id: "produto_lifestyle",
+    titulo: "Produto Lifestyle",
+    descricao: "Produto em contexto de uso real",
+    icone: "🛍️",
+    categoria: "Produto",
+    placeholder: "Ex: Tenis esportivo em uma corrida",
+    promptBase: "Product in lifestyle context, natural environment, authentic usage, cinematic lighting, aspirational feel, 4k"
+  },
+  {
+    id: "produto_unboxing",
+    titulo: "Unboxing Premium",
+    descricao: "Experiencia de unboxing satisfatoria",
+    icone: "📬",
+    categoria: "Produto",
+    placeholder: "Ex: Caixa de iPhone sendo aberta",
+    promptBase: "Premium unboxing experience, hands opening box, satisfying reveal, clean aesthetic, soft lighting, ASMR feel, 4k"
+  },
+  {
+    id: "lifestyle_wellness",
+    titulo: "Lifestyle Wellness",
+    descricao: "Momentos de bem-estar e autocuidado",
+    icone: "🧘",
+    categoria: "Lifestyle",
+    placeholder: "Ex: Pessoa meditando ao nascer do sol",
+    promptBase: "Wellness lifestyle, peaceful atmosphere, soft natural lighting, mindfulness moment, serene environment, 4k quality"
+  },
+  {
+    id: "lifestyle_travel",
+    titulo: "Travel Vlog",
+    descricao: "Cenas de viagem e aventura",
+    icone: "✈️",
+    categoria: "Lifestyle",
+    placeholder: "Ex: Turista admirando a Torre Eiffel",
+    promptBase: "Travel vlog style, point of view shot, wanderlust aesthetic, golden hour lighting, adventure vibes, 4k cinematic"
+  },
+  {
+    id: "lifestyle_food",
+    titulo: "Food Content",
+    descricao: "Comida apetitosa e gastronomia",
+    icone: "🍕",
+    categoria: "Lifestyle",
+    placeholder: "Ex: Pizza saindo do forno com queijo derretendo",
+    promptBase: "Food photography style, appetizing, steam rising, macro details, professional food lighting, 4k quality"
+  },
+  {
+    id: "tutorial_tech",
+    titulo: "Tutorial Tech",
+    descricao: "Demonstracao de tecnologia e apps",
+    icone: "📱",
+    categoria: "Tutorial",
+    placeholder: "Ex: Dedo tocando em um app na tela",
+    promptBase: "Tech tutorial style, screen recording feel, clean interface, finger tapping, modern device, professional lighting, 4k"
+  },
+  {
+    id: "tutorial_howto",
+    titulo: "How To / DIY",
+    descricao: "Passo a passo de como fazer algo",
+    icone: "🔧",
+    categoria: "Tutorial",
+    placeholder: "Ex: Maos montando um movel",
+    promptBase: "How to tutorial, hands demonstrating, step by step, clear view, instructional style, good lighting, 4k"
+  },
+  {
+    id: "meme_viral",
+    titulo: "Meme Viral",
+    descricao: "Conteudo engracado estilo meme",
+    icone: "😂",
+    categoria: "Meme",
+    placeholder: "Ex: Gato surpreso olhando para camera",
+    promptBase: "Viral meme style, funny unexpected moment, expressive reaction, shareable content, internet humor aesthetic"
+  },
+  {
+    id: "meme_reaction",
+    titulo: "Reaction Video",
+    descricao: "Reacoes exageradas e expressivas",
+    icone: "😱",
+    categoria: "Meme",
+    placeholder: "Ex: Pessoa com expressao de choque total",
+    promptBase: "Reaction video style, exaggerated facial expression, dramatic zoom, meme-worthy moment, expressive"
+  },
+  {
+    id: "meme_trend",
+    titulo: "TikTok Trend",
+    descricao: "Estilo de trend viral do TikTok",
+    icone: "🎵",
+    categoria: "Meme",
+    placeholder: "Ex: Pessoa fazendo transicao de roupa",
+    promptBase: "TikTok trend style, transition effect, trendy aesthetic, vertical video feel, energetic, viral potential"
+  }
+];
+
+// ========================================
+// PROMPT LIBRARY MANAGER
+// ========================================
+
+class PromptLibraryManager {
+  constructor() {
+    this.templates = bibliotecaPrompts;
+    this.selectedTemplate = null;
+    this.promptQuantity = 3;
+    this.userInputs = [];
+  }
+
+  getAll(filter = {}) {
+    let filtered = [...this.templates];
+
+    if (filter.categoria) {
+      filtered = filtered.filter(t => t.categoria === filter.categoria);
+    }
+
+    if (filter.search) {
+      const search = filter.search.toLowerCase();
+      filtered = filtered.filter(t =>
+        t.titulo.toLowerCase().includes(search) ||
+        t.descricao.toLowerCase().includes(search) ||
+        t.categoria.toLowerCase().includes(search)
+      );
+    }
+
+    return filtered;
+  }
+
+  get(id) {
+    return this.templates.find(t => t.id === id);
+  }
+
+  selectTemplate(id) {
+    this.selectedTemplate = this.get(id);
+    return this.selectedTemplate;
+  }
+
+  setQuantity(qty) {
+    this.promptQuantity = Math.max(1, Math.min(10, qty));
+    this.userInputs = new Array(this.promptQuantity).fill('');
+    return this.promptQuantity;
+  }
+
+  setUserInput(index, value) {
+    if (index >= 0 && index < this.userInputs.length) {
+      this.userInputs[index] = value;
+    }
+  }
+
+  generatePrompts() {
+    if (!this.selectedTemplate) return [];
+
+    return this.userInputs.map((input, index) => {
+      const userText = input.trim() || `[Prompt ${index + 1}]`;
+      return {
+        index: index + 1,
+        userInput: userText,
+        fullPrompt: `"${userText}"\n${this.selectedTemplate.promptBase}`
+      };
+    });
+  }
+
+  getGeneratedPromptsForQueue() {
+    if (!this.selectedTemplate) return [];
+
+    return this.userInputs
+      .filter(input => input.trim())
+      .map(input => ({
+        scene: input.trim(),
+        fullPrompt: `"${input.trim()}"\n${this.selectedTemplate.promptBase}`
+      }));
+  }
+}
+
 class TemplateManager {
   constructor() {
     this.templates = [];
@@ -160,6 +397,7 @@ class TemplateManager {
 class UIManager {
   constructor() {
     this.templateManager = new TemplateManager();
+    this.promptLibrary = new PromptLibraryManager();
     this.currentTab = 'scenes';
     this.selectedTemplateId = null;
     this.scenes = [];
@@ -175,6 +413,7 @@ class UIManager {
     this.initElements();
     this.initEventListeners();
     this.initVideoSettings();
+    this.initLibrary();
     this.init();
   }
 
@@ -237,6 +476,26 @@ class UIManager {
 
     // Modal close buttons
     this.modalCloseButtons = document.querySelectorAll('.modal-close');
+
+    // Library elements
+    this.openLibraryBtn = document.getElementById('open-library-btn');
+    this.libraryModal = document.getElementById('library-modal');
+    this.libraryGrid = document.getElementById('library-grid');
+    this.librarySearch = document.getElementById('library-search');
+    this.libraryCategoryFilter = document.getElementById('library-category-filter');
+
+    // Config modal elements
+    this.promptConfigModal = document.getElementById('prompt-config-modal');
+    this.configTemplateIcon = document.getElementById('config-template-icon');
+    this.configTemplateTitle = document.getElementById('config-template-title');
+    this.configTemplateDesc = document.getElementById('config-template-desc');
+    this.promptQuantityInput = document.getElementById('prompt-quantity');
+    this.qtyMinusBtn = document.getElementById('qty-minus');
+    this.qtyPlusBtn = document.getElementById('qty-plus');
+    this.dynamicFieldsContainer = document.getElementById('dynamic-fields-container');
+    this.promptsPreviewList = document.getElementById('prompts-preview-list');
+    this.backToLibraryBtn = document.getElementById('back-to-library-btn');
+    this.generateSequenceBtn = document.getElementById('generate-sequence-btn');
   }
 
   initEventListeners() {
@@ -288,6 +547,8 @@ class UIManager {
       btn.addEventListener('click', () => {
         this.closeTemplateModal();
         this.closePreviewModal();
+        this.closeLibraryModal();
+        this.closeConfigModal();
       });
     });
 
@@ -1199,6 +1460,230 @@ class UIManager {
   async getSettings() {
     const result = await chrome.storage.local.get(['settings']);
     return result.settings || {};
+  }
+
+  // ========================================
+  // BIBLIOTECA DE PROMPTS
+  // ========================================
+
+  initLibrary() {
+    // Open library button
+    if (this.openLibraryBtn) {
+      this.openLibraryBtn.addEventListener('click', () => this.openLibraryModal());
+    }
+
+    // Search and filter
+    if (this.librarySearch) {
+      this.librarySearch.addEventListener('input', () => this.renderLibraryCards());
+    }
+
+    if (this.libraryCategoryFilter) {
+      this.libraryCategoryFilter.addEventListener('change', () => this.renderLibraryCards());
+    }
+
+    // Quantity controls
+    if (this.qtyMinusBtn) {
+      this.qtyMinusBtn.addEventListener('click', () => this.adjustQuantity(-1));
+    }
+
+    if (this.qtyPlusBtn) {
+      this.qtyPlusBtn.addEventListener('click', () => this.adjustQuantity(1));
+    }
+
+    if (this.promptQuantityInput) {
+      this.promptQuantityInput.addEventListener('change', () => {
+        const qty = parseInt(this.promptQuantityInput.value) || 3;
+        this.promptLibrary.setQuantity(qty);
+        this.renderDynamicFields();
+        this.updatePromptsPreview();
+      });
+    }
+
+    // Back to library button
+    if (this.backToLibraryBtn) {
+      this.backToLibraryBtn.addEventListener('click', () => {
+        this.closeConfigModal();
+        this.openLibraryModal();
+      });
+    }
+
+    // Generate sequence button
+    if (this.generateSequenceBtn) {
+      this.generateSequenceBtn.addEventListener('click', () => this.generateSequence());
+    }
+  }
+
+  openLibraryModal() {
+    this.renderLibraryCards();
+    this.libraryModal.classList.add('active');
+  }
+
+  closeLibraryModal() {
+    this.libraryModal.classList.remove('active');
+  }
+
+  openConfigModal(templateId) {
+    const template = this.promptLibrary.selectTemplate(templateId);
+    if (!template) return;
+
+    // Update modal header
+    this.configTemplateIcon.textContent = template.icone;
+    this.configTemplateTitle.textContent = template.titulo;
+    this.configTemplateDesc.textContent = template.descricao;
+
+    // Reset quantity
+    this.promptQuantityInput.value = 3;
+    this.promptLibrary.setQuantity(3);
+
+    // Render fields
+    this.renderDynamicFields();
+    this.updatePromptsPreview();
+
+    // Close library, open config
+    this.closeLibraryModal();
+    this.promptConfigModal.classList.add('active');
+  }
+
+  closeConfigModal() {
+    this.promptConfigModal.classList.remove('active');
+  }
+
+  renderLibraryCards() {
+    const search = this.librarySearch?.value || '';
+    const categoria = this.libraryCategoryFilter?.value || '';
+
+    const templates = this.promptLibrary.getAll({ search, categoria });
+
+    if (templates.length === 0) {
+      this.libraryGrid.innerHTML = `
+        <div class="library-empty" style="grid-column: 1 / -1;">
+          <div class="library-empty-icon">📭</div>
+          <p>Nenhum template encontrado</p>
+        </div>
+      `;
+      return;
+    }
+
+    this.libraryGrid.innerHTML = '';
+
+    templates.forEach(template => {
+      const card = document.createElement('div');
+      card.className = 'library-card';
+      card.dataset.id = template.id;
+
+      const tagClass = template.categoria.toLowerCase();
+
+      card.innerHTML = `
+        <span class="library-card-icon">${template.icone}</span>
+        <h3 class="library-card-title">${this.escapeHtml(template.titulo)}</h3>
+        <p class="library-card-description">${this.escapeHtml(template.descricao)}</p>
+        <span class="library-card-tag ${tagClass}">${template.categoria}</span>
+      `;
+
+      card.addEventListener('click', () => this.openConfigModal(template.id));
+
+      this.libraryGrid.appendChild(card);
+    });
+  }
+
+  adjustQuantity(delta) {
+    const current = parseInt(this.promptQuantityInput.value) || 3;
+    const newValue = Math.max(1, Math.min(10, current + delta));
+    this.promptQuantityInput.value = newValue;
+    this.promptLibrary.setQuantity(newValue);
+    this.renderDynamicFields();
+    this.updatePromptsPreview();
+  }
+
+  renderDynamicFields() {
+    const quantity = this.promptLibrary.promptQuantity;
+    const template = this.promptLibrary.selectedTemplate;
+
+    this.dynamicFieldsContainer.innerHTML = '';
+
+    for (let i = 0; i < quantity; i++) {
+      const field = document.createElement('div');
+      field.className = 'dynamic-field';
+
+      field.innerHTML = `
+        <label>
+          <span class="field-number">Prompt ${i + 1}</span> - Digite o texto
+        </label>
+        <input
+          type="text"
+          data-index="${i}"
+          placeholder="${template?.placeholder || 'Digite seu texto aqui...'}"
+          value="${this.promptLibrary.userInputs[i] || ''}"
+        >
+      `;
+
+      const input = field.querySelector('input');
+      input.addEventListener('input', (e) => {
+        this.promptLibrary.setUserInput(i, e.target.value);
+        this.updatePromptsPreview();
+      });
+
+      this.dynamicFieldsContainer.appendChild(field);
+    }
+  }
+
+  updatePromptsPreview() {
+    const prompts = this.promptLibrary.generatePrompts();
+
+    if (prompts.length === 0) {
+      this.promptsPreviewList.innerHTML = '<p style="color: #6c6c7c; text-align: center;">Preencha os campos acima para ver o preview</p>';
+      return;
+    }
+
+    this.promptsPreviewList.innerHTML = '';
+
+    prompts.forEach((prompt) => {
+      const item = document.createElement('div');
+      item.className = 'prompt-preview-item';
+
+      const userText = prompt.userInput.startsWith('[') ? prompt.userInput : `"${prompt.userInput}"`;
+      const baseText = this.promptLibrary.selectedTemplate?.promptBase || '';
+
+      item.innerHTML = `
+        <span class="user-text">${this.escapeHtml(userText)}</span><br>
+        <span class="base-text">${this.escapeHtml(baseText)}</span>
+      `;
+
+      this.promptsPreviewList.appendChild(item);
+    });
+  }
+
+  generateSequence() {
+    const prompts = this.promptLibrary.getGeneratedPromptsForQueue();
+
+    if (prompts.length === 0) {
+      this.showNotification('Preencha pelo menos um campo!', 'error');
+      return;
+    }
+
+    // Add prompts to scenes input
+    const scenesText = prompts.map(p => p.fullPrompt).join('\n\n');
+
+    // Append or replace scenes
+    if (this.scenesInput.value.trim()) {
+      const shouldAppend = confirm('Deseja adicionar aos prompts existentes? (Cancelar para substituir)');
+      if (shouldAppend) {
+        this.scenesInput.value = this.scenesInput.value.trim() + '\n\n' + scenesText;
+      } else {
+        this.scenesInput.value = scenesText;
+      }
+    } else {
+      this.scenesInput.value = scenesText;
+    }
+
+    // Update scene count
+    this.updateSceneCount();
+
+    // Close modal
+    this.closeConfigModal();
+
+    // Show notification
+    this.showNotification(`${prompts.length} prompts adicionados a fila!`, 'success');
   }
 
   // ========================================

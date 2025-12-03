@@ -1108,3 +1108,526 @@ button {
     padding: 10px 12px;
   }
 }
+
+/* ========================================
+   BIBLIOTECA DE PROMPTS - ESTILOS
+   ======================================== */
+
+/* Scenes Header */
+.scenes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.scenes-header label {
+  margin-bottom: 0;
+}
+
+/* Botão Biblioteca */
+.btn-library {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #1e1e2e 0%, #2d2d3d 100%);
+  color: #e0e0e0;
+  border: 1px solid #3d3d5c;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-library:hover {
+  background: linear-gradient(135deg, #2d2d3d 0%, #3d3d5c 100%);
+  border-color: #667eea;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.library-icon {
+  font-size: 16px;
+}
+
+/* ========================================
+   MODAL BIBLIOTECA - DARK MODE
+   ======================================== */
+
+.library-modal .library-content {
+  background: #1a1a2e;
+  max-width: 90vw;
+  width: 900px;
+  max-height: 85vh;
+  border: 1px solid #2d2d4a;
+}
+
+.library-header {
+  background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+  border-bottom: 1px solid #2d2d4a;
+}
+
+.library-header h2 {
+  color: #ffffff;
+}
+
+.library-header .modal-close {
+  color: #a0a0b0;
+}
+
+.library-header .modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.library-body {
+  background: #1a1a2e;
+  padding: 20px;
+}
+
+/* Search Bar */
+.library-search-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.library-search-bar input,
+.library-search-bar select {
+  background: #0f0f1a;
+  border: 1px solid #2d2d4a;
+  color: #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.library-search-bar input {
+  flex: 2;
+}
+
+.library-search-bar select {
+  flex: 1;
+}
+
+.library-search-bar input:focus,
+.library-search-bar select:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.library-search-bar input::placeholder {
+  color: #6c6c7c;
+}
+
+/* Grid de Cards */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+/* Card Individual */
+.library-card {
+  background: linear-gradient(145deg, #252538 0%, #1e1e2e 100%);
+  border: 1px solid #2d2d4a;
+  border-radius: 16px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.library-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.library-card:hover {
+  border-color: #667eea;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.25);
+}
+
+.library-card:hover::before {
+  opacity: 1;
+}
+
+.library-card-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.library-card-title {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.library-card-description {
+  color: #8c8ca0;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.library-card-tag {
+  display: inline-block;
+  background: rgba(102, 126, 234, 0.15);
+  color: #8b9eff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tags por categoria */
+.library-card-tag.ugc {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.library-card-tag.cinematic {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+}
+
+.library-card-tag.produto {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.library-card-tag.lifestyle {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.library-card-tag.tutorial {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.library-card-tag.meme {
+  background: rgba(236, 72, 153, 0.15);
+  color: #f472b6;
+}
+
+/* Scrollbar Dark */
+.library-grid::-webkit-scrollbar,
+.library-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.library-grid::-webkit-scrollbar-track,
+.library-body::-webkit-scrollbar-track {
+  background: #0f0f1a;
+  border-radius: 3px;
+}
+
+.library-grid::-webkit-scrollbar-thumb,
+.library-body::-webkit-scrollbar-thumb {
+  background: #3d3d5c;
+  border-radius: 3px;
+}
+
+.library-grid::-webkit-scrollbar-thumb:hover,
+.library-body::-webkit-scrollbar-thumb:hover {
+  background: #4d4d6c;
+}
+
+/* ========================================
+   MODAL CONFIGURAÇÃO DE PROMPTS
+   ======================================== */
+
+.config-modal .config-content {
+  background: #1a1a2e;
+  max-width: 700px;
+  width: 90vw;
+  max-height: 90vh;
+  border: 1px solid #2d2d4a;
+}
+
+.config-header {
+  background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+  border-bottom: 1px solid #2d2d4a;
+  padding: 20px 24px;
+}
+
+.config-header-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.config-icon {
+  font-size: 40px;
+  background: rgba(102, 126, 234, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.config-header h2 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.config-description {
+  color: #8c8ca0;
+  font-size: 13px;
+  margin: 0;
+}
+
+.config-header .modal-close {
+  color: #a0a0b0;
+}
+
+.config-body {
+  background: #1a1a2e;
+  padding: 24px;
+}
+
+/* Seletor de Quantidade */
+.config-quantity-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.config-quantity-section label {
+  color: #e0e0e0;
+  font-size: 15px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #0f0f1a;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #252538;
+  color: #e0e0e0;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+.quantity-selector input {
+  width: 60px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.quantity-selector input:focus {
+  outline: none;
+}
+
+.config-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2d2d4a, transparent);
+  margin: 20px 0;
+}
+
+/* Campos Dinâmicos */
+.dynamic-fields {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.dynamic-field {
+  margin-bottom: 16px;
+}
+
+.dynamic-field label {
+  display: block;
+  color: #8c8ca0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.dynamic-field label .field-number {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.dynamic-field input {
+  width: 100%;
+  background: #0f0f1a;
+  border: 1px solid #2d2d4a;
+  color: #e0e0e0;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.dynamic-field input:focus {
+  border-color: #667eea;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.dynamic-field input::placeholder {
+  color: #5c5c6c;
+}
+
+/* Preview dos Prompts */
+.prompt-preview-section {
+  margin-top: 20px;
+}
+
+.prompt-preview-section h4 {
+  color: #e0e0e0;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.prompts-preview-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.prompt-preview-item {
+  background: #0f0f1a;
+  border: 1px solid #2d2d4a;
+  border-left: 3px solid #667eea;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #a0a0b0;
+  line-height: 1.5;
+  font-family: 'Courier New', monospace;
+}
+
+.prompt-preview-item .user-text {
+  color: #34d399;
+  font-weight: 500;
+}
+
+.prompt-preview-item .base-text {
+  color: #8b9eff;
+}
+
+/* Config Footer */
+.config-footer {
+  background: #16213e;
+  border-top: 1px solid #2d2d4a;
+  padding: 16px 24px;
+}
+
+.config-footer .btn-secondary {
+  background: #252538;
+  border-color: #3d3d5c;
+  color: #e0e0e0;
+}
+
+.config-footer .btn-secondary:hover {
+  background: #3d3d5c;
+  border-color: #667eea;
+}
+
+/* Empty State */
+.library-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c6c7c;
+}
+
+.library-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.library-empty p {
+  font-size: 16px;
+}
+
+/* Scrollbar para campos dinâmicos e preview */
+.dynamic-fields::-webkit-scrollbar,
+.prompts-preview-list::-webkit-scrollbar,
+.config-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dynamic-fields::-webkit-scrollbar-track,
+.prompts-preview-list::-webkit-scrollbar-track,
+.config-body::-webkit-scrollbar-track {
+  background: #0f0f1a;
+  border-radius: 3px;
+}
+
+.dynamic-fields::-webkit-scrollbar-thumb,
+.prompts-preview-list::-webkit-scrollbar-thumb,
+.config-body::-webkit-scrollbar-thumb {
+  background: #3d3d5c;
+  border-radius: 3px;
+}
+
+/* Responsividade Biblioteca */
+@media (max-width: 800px) {
+  .library-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .library-search-bar {
+    flex-direction: column;
+  }
+
+  .library-modal .library-content,
+  .config-modal .config-content {
+    width: 95vw;
+    max-height: 90vh;
+  }
+}
