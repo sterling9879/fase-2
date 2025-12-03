@@ -166,7 +166,7 @@ class SoraAutomation {
 
     try {
       // Tentar buscar dados de pending diretamente
-      const response = await fetch('https://sora.chatgpt.com/backend-api/v1/video/pending', {
+      const response = await fetch('https://sora.chatgpt.com/backend/nf/pending', {
         credentials: 'include',
         headers: {
           'Accept': 'application/json'
